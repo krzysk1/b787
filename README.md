@@ -5,3 +5,6 @@ The Boeing 787 Dreamliner is a long-range, mid-size wide-body, twin-engine jet a
 
 Made by Krzysztof Kaniewski. Original 3D model by Yusuf Buwanguzi. 
 downloaded from https://grabcad.com/library/boeing-787-dreamliner-edited-1
+
+
+There is no Virtual Cockpit = only exterior model!
