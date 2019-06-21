@@ -735,9 +735,38 @@
                 <[uint][Positions][7]>
                 <[float64][Value][0.0]>
             >
+            <[gated_lever][FlapLever][]
+                <[string8][Input][FlapsInput.Output]>
+                <[float64][Gates][ 0.0 0.167 0.333 0.50 0.667 0.833 1.0 ]>
+                <[float64][CommandMoveAcceleration][20.0]>
+                <[float64][CommandMoveStrength]    [8.0]>
+            >			
+            <[output_free][FlapLeverOutput][]
+                <[string8][Input][FlapLever.Output]>
+            >			
+            <[event_sound][FlapLeverPullSound][]
+            >
+            <[event_sound][FlapLeverReleaseSound][]
+            >
+            <[event_edge][FlapLever_UnlockedSound][]
+                <[string8][Input][FlapLever.OutputUnlocked]>
+                <[string8][Events][ FlapLeverPullSound.Trigger ]>
+                <[bool][Rising][true]>
+                <[bool][Falling][false]>
+                <[float64][Value][0.0]>
+                <[float64][Threshold][0.97]>
+            >
+            <[event_edge][FlapLever_ReleaseSound][]
+                <[string8][Input][FlapLever.OutputUnlocked]>
+                <[string8][Events][ FlapLeverReleaseSound.Trigger ]>
+                <[bool][Rising][false]>
+                <[bool][Falling][true]>
+                <[float64][Value][0.0]>
+                <[float64][Threshold][0.1]>
+            >			
             <[linear_interpolation][FlapsMapping][]
                 <[string8][Input][FlapsInput.Output]>
-                <[tmvector2d][Map][ (0.0 0.0) (1.0 0.523599) ]>
+                <[tmvector2d][Map][ (0.0 0.017453) (0.167 0.087266) (0.333 0.087266) (0.5 0.261799) (0.667 0.349066) (0.833 0.436332) (1.0 0.523599) ]>
             >
             <[sender][SenderFlapPosition][]
                 <[string8][Input][FlapsMapping.Output]>
@@ -772,7 +801,7 @@
             <[sender][SenderGearPosition][]
                 <[string8][Input][ServoGear.Output]>
                 <[string8][Message][Aircraft.Gear]>
-            >
+            >		
             <[input_default][AirBrakeInput][]
                 <[string8][Input][Controls.AirBrake]>
             >
@@ -781,8 +810,10 @@
                 <[string8][Message][Aircraft.AirBrake]>
             >
             <[input_default][ElevatorTrimInput][]
-                <[tmvector2d][Range][ -1.0 1.0 ]>
                 <[string8][Input][Controls.Trim]>
+                <[uint][Positions][101]>
+                <[tmvector2d][Range][ -1.0 1.0 ]>
+                <[float64][Speed][0.3]>
             >
             <[sender][SenderTrim][]
                 <[string8][Input][ElevatorTrimInput.Output]>
@@ -803,12 +834,39 @@
                 <[tmvector2d][Range][ -1.0 1.0 ]>
             >
             <[input_default][AileronTrimInput][]
-                <[tmvector2d][Range][ -1.0 1.0 ]>
                 <[string8][Input][Controls.AileronTrim]>
+                <[uint][Positions][401]>
+                <[tmvector2d][Range][ -1.0 1.0 ]>
+                <[float64][Value][0.0]>
+                <[float64][Speed][0.1]>
+            >
+            <[mixlinear][AileronTrimmedMix][]
+                <[string8][Input0][AileronInput.Output]>
+                <[string8][Input1][AileronTrimInput.Output]>
+                <[float64][Weight0][1.0]>
+                <[float64][Weight1][0.2]>
+                <[float64][Offset][0.0]>
+            >
+            <[clamp][AileronTrimmed][]
+                <[string8][Input][AileronTrimmedMix.Output]>
+                <[tmvector2d][Range][ -1.0 1.0 ]>
             >
             <[input_default][RudderTrimInput][]
-                <[tmvector2d][Range][ -1.0 1.0 ]>
                 <[string8][Input][Controls.RudderTrim]>
+                <[uint][Positions][101]>
+                <[tmvector2d][Range][ -1.0 1.0 ]>
+                <[float64][Speed][0.3]>
+            >
+            <[mixlinear][RudderTrimmedMix][]
+                <[string8][Input0][RudderInput.Output]>
+                <[string8][Input1][RudderTrimInput.Output]>
+                <[float64][Weight0][1.0]>
+                <[float64][Weight1][0.2]>
+                <[float64][Offset][0.0]>
+            >
+            <[clamp][RudderTrimmed][]
+                <[string8][Input][RudderTrimmedMix.Output]>
+                <[tmvector2d][Range][ -1.0 1.0 ]>
             >
 
 
@@ -866,6 +924,26 @@
             <[output_free][GearSequenceOutput][]
                 <[string8][Input][GearSequence.Output]>
             >
+            <[event_sound][GearSoundUp][]
+            >
+            <[event_sound][GearSoundDown][]
+            >
+            <[event_edge][GearSequence_Sound][]
+                <[string8][Input][GearSequence.Output]>
+                <[string8][Events][ GearSoundUp.Trigger ]>
+                <[bool][Rising][true]>
+                <[bool][Falling][false]>
+                <[float64][Threshold][0.15]>
+                <[float64][Value][1.0]>
+            >
+            <[event_edge][GearSequence_Sound1][]
+                <[string8][Input][GearSequence.Output]>
+                <[string8][Events][ GearSoundDown.Trigger ]>
+                <[bool][Rising][false]>
+                <[bool][Falling][true]>
+                <[float64][Threshold][0.85]>
+                <[float64][Value][1.0]>
+            >				
             <[servolinear][ServoGear][]
                 <[string8][Input][GearSequence.Output]>
                 <[float64][OutputSpeed][0.2]>
@@ -1924,59 +2002,102 @@
             >
 		>
         <[pointer_list_tmsound][SoundObjects][]
+            <[soundinput][Airspeed][]
+                <[uint32][InputID][AirspeedIndicatorNeedle.Output]>
+            >
+            <[soundmapping][FlightVolume][]
+                <[string8][Input][Airspeed.Output]>
+                <[tmvector2d][Map][ (0.0 0.0) (10.0 0.0) (15.0 0.5) (100.0 1.5) (200.0 2.0) ]>
+            >
+            <[soundmapping][FlightPitch][]
+                <[string8][Input][Airspeed.Output]>
+                <[tmvector2d][Map][ (0.0 0.80) (33.33 1.6) (200.0 5.2) ]>
+            >
+            <[soundloop][FlightVolumeLoop][]
+                <[string8][InputVolume][FlightVolume.Output]>
+                <[string8][InputPitch][FlightPitch.Output]>
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][VelocityID][Fuselage.V]>
+                <[string8][SoundFile][wind.wav]>
+                <[bool][External][false]>
+            >
+			
+            <[soundinput][AngleOfAttack][]
+                <[uint32][InputID][AngleOfAttack.Output]>
+            >
+            <[soundmapping][AngleOfAttackMap][]
+                <[string8][Input][AngleOfAttack.Output]>
+                <[tmvector2d][Map][ (-10.0 0.0) (0.270 0.0) (0.279 1.0) (10.0 1.0) ]>
+            >
+            <[soundmapping][AngleOfAttackVolumeMap][]
+                <[string8][Input][Airspeed.Output]>
+                <[tmvector2d][Map][ (0.0 0.0) (5.0 0.0) (20.0 0.5) (200.0 1.0) ]>
+            >
+            <[soundmultiply][AngleOfAttackVolume][]
+                <[string8][Input0][AngleOfAttackMap.Output]>
+                <[string8][Input1][AngleOfAttackVolumeMap.Output]>
+            >
+            <[soundloop][StallWarningLoop][]
+                <[string8][InputVolume][AngleOfAttackVolume.Output]>
+                <[string8][InputPitch][1.0]>
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][VelocityID][Fuselage.V]>
+                <[string8][SoundFile][stall.wav]>
+                <[bool][External][false]>
+            >
+			
             <[soundinput][EnginePercentage][]
                 <[uint32][InputID][LeftEngineN1.Output]>
             >
             <[soundmapping][EngineVolume0][]
                 <[string8][Input][EnginePercentage.Output]>
-                <[tmvector2d][Map][ (0.0 1.0) (0.5 0.6 ) (0.8 0.0 ) ]>
+                <[tmvector2d][Map][ (0.0 1.0) (0.5 0.6) (0.8 0.0) ]>
             >
             <[soundmapping][EnginePitch0][]
                 <[string8][Input][EnginePercentage.Output]>
-                <[tmvector2d][Map][ (0.0 0.7) (1.0 1.0 ) ]>
+                <[tmvector2d][Map][ (0.0 0.7) (1.0 1.0) ]>
             >
             <[soundmapping][EngineVolume1][]
                 <[string8][Input][EnginePercentage.Output]>
-                <[tmvector2d][Map][ (0.0 0.0) (0.4 0.0) (0.7 0.4) (1.0 1.0 ) ]>
+                <[tmvector2d][Map][ (0.0 0.0) (0.4 0.0) (0.7 0.4) (1.0 1.0) ]>
             >
             <[soundmapping][EnginePitch1][]
                 <[string8][Input][EnginePercentage.Output]>
-                <[tmvector2d][Map][ (0.0 0.0) (1.0 1.0 ) ]>
+                <[tmvector2d][Map][ (0.0 0.0) (1.0 1.0) ]>
             >
 
             <[soundloop][EngineLoopExtern0][]
-                <[string8][InputVolume][EngineVolume0.Output]> //EngineVolume0.Output
-                <[string8][InputPitch][EnginePitch0.Output]> //EnginePitch0.Output
+                <[string8][InputVolume][EngineVolume0.Output]>
+                <[string8][InputPitch][EnginePitch0.Output]>
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
-                <[string8][SoundFile][mb339_00.wav]>
+                <[string8][SoundFile][whine.wav]>
                 <[bool][Internal][false]>
             >
             <[soundloop][EngineLoopIntern0][]
-                <[string8][InputVolume][EngineVolume0.Output]> //EngineVolume0.Output
-                <[string8][InputPitch][EnginePitch0.Output]> //EnginePitch0.Output
+                <[string8][InputVolume][EngineVolume0.Output]>
+                <[string8][InputPitch][EnginePitch0.Output]>
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
-                <[string8][SoundFile][mb339_00_int.wav]>
+                <[string8][SoundFile][whine.wav]>
                 <[bool][External][false]>
             >
             <[soundloop][EngineLoopExtern1][]
-                <[string8][InputVolume][EngineVolume1.Output]> //EngineVolume1.Output
-                <[string8][InputPitch][EnginePitch1.Output]> //EnginePitch1.Output
+                <[string8][InputVolume][EngineVolume1.Output]>
+                <[string8][InputPitch][EnginePitch1.Output]>
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
-                <[string8][SoundFile][mb339_01.wav]>
+                <[string8][SoundFile][jet.wav]>
                 <[bool][Internal][false]>
             >
             <[soundloop][EngineLoopIntern1][]
-                <[string8][InputVolume][EngineVolume1.Output]> //EngineVolume1.Output
-                <[string8][InputPitch][EnginePitch1.Output]> // EnginePitch1.Output
+                <[string8][InputVolume][EngineVolume1.Output]>
+                <[string8][InputPitch][EnginePitch1.Output]>
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
-                <[string8][SoundFile][mb339_01_int.wav]>
+                <[string8][SoundFile][jet.wav]>
                 <[bool][External][false]>
             >
-
 
             <[soundinput][GroundRollLoadNose][]
                 <[uint32][InputID][GroundRollLoadNose.Output]>
@@ -1998,39 +2119,39 @@
             >
             <[soundmapping][GroundRollFactorNose][]
                 <[string8][Input][GroundRollLoadNose.Output]>
-                <[tmvector2d][Map][ (0.0 0.0) (1000.0 1.0 ) ]>
+                <[tmvector2d][Map][ (0.0 0.0) (1000.0 1.0) ]>
             >
             <[soundmapping][GroundRollFactorLeft][]
                 <[string8][Input][GroundRollLoadLeft.Output]>
-                <[tmvector2d][Map][ (0.0 0.0) (1000.0 1.0 ) ]>
+                <[tmvector2d][Map][ (0.0 0.0) (1000.0 1.0) ]>
             >
             <[soundmapping][GroundRollFactorRight][]
                 <[string8][Input][GroundRollLoadRight.Output]>
-                <[tmvector2d][Map][ (0.0 0.0) (1000.0 1.0 ) ]>
+                <[tmvector2d][Map][ (0.0 0.0) (1000.0 1.0) ]>
             >
             <[soundmapping][GroundRollFactorNose1][]
                 <[string8][Input][GroundRollSpeedNose.Output]>
-                <[tmvector2d][Map][ (-250.0 1.0) (-70.0 0.5) (0.0 0.0) (70.0 0.5 ) (250.0 1.0 ) ]>
+                <[tmvector2d][Map][ (-250.0 1.0) (-70.0 0.5) (0.0 0.0) (70.0 0.5) (250.0 1.0) ]>
             >
             <[soundmapping][GroundRollFactorLeft1][]
                 <[string8][Input][GroundRollSpeedLeft.Output]>
-                <[tmvector2d][Map][ (-250.0 1.0) (-70.0 0.5) (0.0 0.0) (70.0 0.5 ) (250.0 1.0 ) ]>
+                <[tmvector2d][Map][ (-250.0 1.0) (-70.0 0.5) (0.0 0.0) (70.0 0.5) (250.0 1.0) ]>
             >
             <[soundmapping][GroundRollFactorRight1][]
                 <[string8][Input][GroundRollSpeedRight.Output]>
-                <[tmvector2d][Map][ (-250.0 1.0) (-70.0 0.5) (0.0 0.0) (70.0 0.5 ) (250.0 1.0 ) ]>
+                <[tmvector2d][Map][ (-250.0 1.0) (-70.0 0.5) (0.0 0.0) (70.0 0.5) (250.0 1.0) ]>
             >
             <[soundmapping][GroundRollPitchNose][]
                 <[string8][Input][GroundRollSpeedNose.Output]>
-                <[tmvector2d][Map][ (-250.0 1.1) (-70.0 1.1) (0.0 0.6) (70.0 1.1 ) (250.0 1.1) ]>
+                <[tmvector2d][Map][ (-250.0 1.1) (-70.0 1.1) (0.0 0.6) (70.0 1.1) (250.0 1.1) ]>
             >
             <[soundmapping][GroundRollPitchLeft][]
                 <[string8][Input][GroundRollSpeedLeft.Output]>
-                <[tmvector2d][Map][ (-250.0 1.0) (-70.0 1.0) (0.0 0.5) (70.0 1.0 ) (250.0 1.0) ]>
+                <[tmvector2d][Map][ (-250.0 1.0) (-70.0 1.0) (0.0 0.5) (70.0 1.0) (250.0 1.0) ]>
             >
             <[soundmapping][GroundRollPitchRight][]
                 <[string8][Input][GroundRollSpeedRight.Output]>
-                <[tmvector2d][Map][ (-250.0 0.9) (-70.0 1.0) (0.0 0.4) (70.0 0.9 ) (250.0 0.9) ]>
+                <[tmvector2d][Map][ (-250.0 0.9) (-70.0 1.0) (0.0 0.4) (70.0 0.9) (250.0 0.9) ]>
             >
             <[soundmultiply][GroundRollVolumeNose][]
                 <[string8][Input0][GroundRollFactorNose.Output]>
@@ -2049,22 +2170,85 @@
                 <[string8][InputPitch][GroundRollPitchNose.Output]>
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
-                <[string8][SoundFile][ground_roll.wav]>
+                <[string8][SoundFile][rumble.wav]>
             >
             <[soundloop][GroundRollLeft][]
                 <[string8][InputVolume][GroundRollVolumeLeft.Output]>
                 <[string8][InputPitch][GroundRollPitchLeft.Output]>
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
-                <[string8][SoundFile][ground_roll.wav]>
+                <[string8][SoundFile][rumble.wav]>
             >
             <[soundloop][GroundRollRight][]
                 <[string8][InputVolume][GroundRollVolumeRight.Output]>
                 <[string8][InputPitch][GroundRollPitchRight.Output]>
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
-                <[string8][SoundFile][ground_roll]>
+                <[string8][SoundFile][rumble.wav]>
             >
+			
+            <[soundinput][FlapLeverPullSound][]
+                <[string8][InputID][FlapLeverPullSound.Output]>
+            >
+            <[sound_multi][SoundFlapLeverPull][]
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][VelocityID][Fuselage.V]>
+                <[string8][InputTrigger][FlapLeverPullSound.Output]>
+                <[string8][InputVolume][0.3]>
+                <[string8][InputPitch]  [0.6]>
+                <[string8][SoundFile][flaps.wav]>
+                <[bool][External][false]>
+            >
+            <[soundinput][FlapLeverReleaseSound][]
+                <[string8][InputID][FlapLeverReleaseSound.Output]>
+            >			
+            <[sound_multi][SoundFlapLeverRelease][]
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][VelocityID][Fuselage.V]>
+                <[string8][InputTrigger][FlapLeverReleaseSound.Output]>
+                <[string8][InputVolume][0.7]>
+                <[string8][InputPitch]  [1.2]>
+                <[string8][SoundFile][flaps.wav]>
+                <[bool][External][false]>
+            >
+
+            <[soundinput][GearSoundUp][]
+                <[uint32][InputID][GearSoundUp.Output]>
+            >
+            <[sound_multi][SoundGearUp][]
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][VelocityID][Fuselage.V]>
+                <[string8][InputTrigger][GearSoundUp.Output]>
+                <[string8][InputVolume][1.0]>
+                <[string8][InputPitch][1.0]>
+                <[string8][SoundFile][gear.wav]>
+                <[bool][External][false]>
+            >
+            <[soundinput][GearSoundDown][]
+                <[uint32][InputID][GearSoundDown.Output]>
+            >
+            <[sound_multi][SoundGearDown][]
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][VelocityID][Fuselage.V]>
+                <[string8][InputTrigger][GearSoundDown.Output]>
+                <[string8][InputVolume][1.0]>
+                <[string8][InputPitch][1.0]>
+                <[string8][SoundFile][gear.wav]>
+                <[bool][External][false]>
+            >
+			
+            <[soundinput][SwitchSound][]
+                <[uint32][InputID][SwitchSound.Output]>
+            >
+            <[sound_multi][SoundSwitch][]
+                <[uint32][PositionID][Fuselage.R]>
+                <[uint32][VelocityID][Fuselage.V]>
+                <[string8][InputTrigger][SwitchSound.Output]>
+                <[string8][InputVolume][0.6]>
+                <[string8][InputPitch][1.5]>
+                <[string8][SoundFile][click.wav]>
+                <[bool][External][false]>
+            >			
         >
     >
 >
