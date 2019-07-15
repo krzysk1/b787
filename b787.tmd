@@ -338,71 +338,149 @@
                 // <[float64][K][2113740000]>
                 // <[float64][D][31706100]>
             // >
-            <[wheel][NoseWheelHull][]
+            <[wheel][NoseLeftWheelHull][]
                 <[float64][K][6656000]>
-                <[float64][D][49920]>
+                <[float64][D][149920]>
                 <[float64][Radius][0.50]>
+                <[float64][RimRadius][0.25]>
+                <[float64][Width][0.3953]>
+                <[float64][Inflation][1372057.24]>				
                 <[string8][Body][NoseGear]>
-                <[tmvector3d][R0][20.27 0.0 -2.971]>
+                <[tmvector3d][R0][20.27 0.3656 -2.971]>
                 <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
             >
-            <[wheel][LeftWheelHull][]
-                <[float64][K][28946800]>
-                <[float64][D][242101]>
-                <[float64][Radius][0.63]>
-                <[string8][Body][LeftGear]>
-                <[tmvector3d][R0][-2.3858 4.87 -3.45]>
+            <[wheel][NoseRightWheelHull][]
+                <[float64][K][6656000]>
+                <[float64][D][149920]>
+                <[float64][Radius][0.50]>
+                <[float64][RimRadius][0.25]>
+                <[float64][Width][0.3953]>
+                <[float64][Inflation][1372057.24]>				
+                <[string8][Body][NoseGear]>
+                <[tmvector3d][R0][20.27 -0.3656 -2.971]>
                 <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
-                <[string8][InputBrake][LeftBrakeInput.Output]>
-                <[float64][BrakeStrength][0.7500]>
-            >
-            <[wheel][Left2WheelHull][]
-                <[float64][K][28946800]>
-                <[float64][D][242101]>
-                <[float64][Radius][0.63]>
-                <[string8][Body][LeftGear]>
-                <[tmvector3d][R0][-3.845 4.87 -3.45]>
-                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
-                <[string8][InputBrake][LeftBrakeInput.Output]>
-                <[float64][BrakeStrength][0.7500]>
-            >
-            <[wheel][RightWheelHull][]
-                <[float64][K][28946800]>
-                <[float64][D][242101]>
-                <[float64][Radius][0.63]>
-                <[string8][Body][RightGear]>
-                <[tmvector3d][R0][-2.3858 -4.87 -3.45]>
-                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
-                <[string8][InputBrake][RightBrakeInput.Output]>
-                <[float64][BrakeStrength][0.7500]>
-            >
-            <[wheel][Right2WheelHull][]
-                <[float64][K][28946800]>
-                <[float64][D][242101]>
-                <[float64][Radius][0.63]>
-                <[string8][Body][RightGear]>
-                <[tmvector3d][R0][-3.845 -4.87 -3.45]>
-                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
-                <[string8][InputBrake][RightBrakeInput.Output]>
-                <[float64][BrakeStrength][0.7500]>
             >
             <[output][GroundRollSpeedNose][]
-                <[string8][Input][NoseWheelHull.Speed]>
+                <[string8][Input][NoseLeftWheelHull.Speed]>
             >
             <[output][GroundRollLoadNose][]
-                <[string8][Input][NoseWheelHull.Load]>
+                <[string8][Input][NoseLeftWheelHull.Load]>
+            >			
+            <[wheel][LeftWheelLeftHull][]
+                <[float64][K][28946800]>
+                <[float64][D][1242101]>
+                <[float64][Radius][0.63]>
+                <[float64][RimRadius][0.32]>
+                <[float64][Width][0.5381]>
+                <[float64][Inflation][1447899.6]>				
+                <[string8][Body][LeftGear]>
+                <[tmvector3d][R0][-2.3858 5.492 -3.449]>
+                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
+                <[string8][InputBrake][LeftBrakeInput.Output]>
+                <[float64][BrakeStrength][0.75]>
             >
+            <[wheel][Left2WheelLeftHull][]
+                <[float64][K][28946800]>
+                <[float64][D][1242101]>
+                <[float64][Radius][0.63]>
+                <[float64][RimRadius][0.32]>
+                <[float64][Width][0.5381]>
+                <[float64][Inflation][1447899.6]>				
+                <[string8][Body][LeftGear]>
+                <[tmvector3d][R0][-3.844 5.492 -3.449]>
+                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
+                <[string8][InputBrake][LeftBrakeInput.Output]>
+                <[float64][BrakeStrength][0.75]>
+            >
+            <[wheel][RightWheelLeftHull][]
+                <[float64][K][28946800]>
+                <[float64][D][1242101]>
+                <[float64][Radius][0.63]>
+                <[float64][RimRadius][0.32]>
+                <[float64][Width][0.5381]>
+                <[float64][Inflation][1447899.6]>				
+                <[string8][Body][LeftGear]>
+                <[tmvector3d][R0][-2.3858 4.206 -3.449]>
+                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
+                <[string8][InputBrake][LeftBrakeInput.Output]>
+                <[float64][BrakeStrength][0.75]>
+            >
+            <[wheel][Right2WheelLeftHull][]
+                <[float64][K][28946800]>
+                <[float64][D][1242101]>
+                <[float64][Radius][0.63]>
+                <[float64][RimRadius][0.32]>
+                <[float64][Width][0.5381]>
+                <[float64][Inflation][1447899.6]>				
+                <[string8][Body][LeftGear]>
+                <[tmvector3d][R0][-3.844 4.206 -3.449]>
+                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
+                <[string8][InputBrake][LeftBrakeInput.Output]>
+                <[float64][BrakeStrength][0.75]>
+            >			
             <[output][GroundRollSpeedLeft][]
-                <[string8][Input][LeftWheelHull.Speed]>
+                <[string8][Input][LeftWheelLeftHull.Speed]>
             >
             <[output][GroundRollLoadLeft][]
-                <[string8][Input][LeftWheelHull.Load]>
+                <[string8][Input][LeftWheelLeftHull.Load]>
+            >			
+            <[wheel][RightWheelRightHull][]
+                <[float64][K][28946800]>
+                <[float64][D][1242101]>
+                <[float64][Radius][0.63]>
+                <[float64][RimRadius][0.32]>
+                <[float64][Width][0.5381]>
+                <[float64][Inflation][1447899.6]>				
+                <[string8][Body][RightGear]>
+                <[tmvector3d][R0][-2.3858 -5.492 -3.449]>
+                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
+                <[string8][InputBrake][RightBrakeInput.Output]>
+                <[float64][BrakeStrength][0.75]>
+            >
+            <[wheel][Right2WheelRightHull][]
+                <[float64][K][28946800]>
+                <[float64][D][1242101]>
+                <[float64][Radius][0.63]>
+                <[float64][RimRadius][0.32]>
+                <[float64][Width][0.5381]>
+                <[float64][Inflation][1447899.6]>				
+                <[string8][Body][RightGear]>
+                <[tmvector3d][R0][-3.844 -5.492 -3.449]>
+                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
+                <[string8][InputBrake][RightBrakeInput.Output]>
+                <[float64][BrakeStrength][0.75]>
+            >
+            <[wheel][LeftWheelRightHull][]
+                <[float64][K][28946800]>
+                <[float64][D][1242101]>
+                <[float64][Radius][0.63]>
+                <[float64][RimRadius][0.32]>
+                <[float64][Width][0.5381]>
+                <[float64][Inflation][1447899.6]>				
+                <[string8][Body][RightGear]>
+                <[tmvector3d][R0][-2.3858 -4.206 -3.449]>
+                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
+                <[string8][InputBrake][RightBrakeInput.Output]>
+                <[float64][BrakeStrength][0.75]>
+            >
+            <[wheel][Left2WheelRightHull][]
+                <[float64][K][28946800]>
+                <[float64][D][1242101]>
+                <[float64][Radius][0.63]>
+                <[float64][RimRadius][0.32]>
+                <[float64][Width][0.5381]>
+                <[float64][Inflation][1447899.6]>				
+                <[string8][Body][RightGear]>
+                <[tmvector3d][R0][-3.844 -4.206 -3.449]>
+                <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
+                <[string8][InputBrake][RightBrakeInput.Output]>
+                <[float64][BrakeStrength][0.75]>
             >
             <[output][GroundRollSpeedRight][]
-                <[string8][Input][RightWheelHull.Speed]>
+                <[string8][Input][RightWheelRightHull.Speed]>
             >
             <[output][GroundRollLoadRight][]
-                <[string8][Input][RightWheelHull.Load]>
+                <[string8][Input][RightWheelRightHull.Load]>
             >
 
             // Airfoils
@@ -1129,24 +1207,24 @@
                 <[string8][Body][NoseGear]>
                 <[tmvector3d][R0][ 20.27 0.0 -2.971 ]>
                 <[tmvector3d][X0][ 1.0 0.0 0.0]>
-                <[float64][Area][2.7]>
-                <[float64][Cd][2.0]>
+                <[float64][Area][0.8]>
+                <[float64][Cd][1.2]>
                 <[string8][Control][ServoGearAirBrake.Output]>
             >
             <[airbrake][LeftGearAirbrake][]
                 <[string8][Body][LeftGear]>
                 <[tmvector3d][R0][ -3.116 4.87 -3.45 ]>
                 <[tmvector3d][X0][ 1.0 0.0 0.0]>
-                <[float64][Area][3.3]>
-                <[float64][Cd][2.0]>
+                <[float64][Area][1.4]>
+                <[float64][Cd][1.2]>
                 <[string8][Control][ServoGearAirBrake.Output]>
             >
             <[airbrake][RightGearAirbrake][]
                 <[string8][Body][RightGear]>
                 <[tmvector3d][R0][ -3.116 -4.87 -3.45]>
                 <[tmvector3d][X0][ 1.0 0.0 0.0]>
-                <[float64][Area][3.3]>
-                <[float64][Cd][2.0]>
+                <[float64][Area][1.4]>
+                <[float64][Cd][1.2]>
                 <[string8][Control][ServoGearAirBrake.Output]>
             >
 
