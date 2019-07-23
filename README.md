@@ -6,5 +6,11 @@ The Boeing 787 Dreamliner is a long-range, mid-size wide-body, twin-engine jet a
 Made by Krzysztof Kaniewski. Original 3D model by Yusuf Buwanguzi. 
 downloaded from https://grabcad.com/library/boeing-787-dreamliner-edited-1
 
+ Some features may not work as intended and this aircraft could crash your Aerofly FS2. 
+ Use it at your own risk!
+
+Installation:
+
+1. Unzip file and move the folder "b787" to C:\Users\~\Documents\Aerofly FS2\aircraft.
 
 There is no Virtual Cockpit = only exterior model!
