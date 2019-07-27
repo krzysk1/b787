@@ -40,7 +40,7 @@
                 <[bool][InCockpit][true]>
             >
 
-            // Rigidbodies
+            // Rigidbodies mass: 211091.3 ( -1.602 0.000 1.047 )
 
             <[rigidbody][Fuselage][]
                 <[float64][Mass][141104.8]>
@@ -359,7 +359,7 @@
 
             // <[collisionhull][CollisionFrontGear][]
                 // <[string8][Body][FrontGear]>
-                // <[string8][Geometry][FrontGear]>
+                // <[string8][Geometry][frontgear]>
                 // <[float64][K][1268244000]>
                 // <[float64][D][19023660]>
             // >
@@ -549,7 +549,7 @@
                 <[float64][ClAlpha][6.016057]>
                 <[float64][CdAlpha][0.630254]>
                 <[float64][CmAlpha][0.0]>
-                <[float64][ClFlap][2.1]>
+                <[float64][ClFlap][1.0]>
                 <[float64][CdFlap][0.0]>
                 <[float64][CmFlap][-0.02]>
                 <[float64][Cd0Base][0.0]>
@@ -2158,7 +2158,7 @@
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
                 <[string8][SoundFile][stall.wav]>
-                <[bool][External][false]>
+            //    <[bool][External][false]>
             >
 			
             <[soundinput][EnginePercentage][]
@@ -2300,69 +2300,6 @@
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
                 <[string8][SoundFile][rumble.wav]>
-            >
-			
-            <[soundinput][FlapLeverPullSound][]
-                <[string8][InputID][FlapLeverPullSound.Output]>
-            >
-            <[sound_multi][SoundFlapLeverPull][]
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][VelocityID][Fuselage.V]>
-                <[string8][InputTrigger][FlapLeverPullSound.Output]>
-                <[string8][InputVolume][0.3]>
-                <[string8][InputPitch]  [0.6]>
-                <[string8][SoundFile][flaps.wav]>
-                <[bool][External][false]>
-            >
-            <[soundinput][FlapLeverReleaseSound][]
-                <[string8][InputID][FlapLeverReleaseSound.Output]>
-            >			
-            <[sound_multi][SoundFlapLeverRelease][]
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][VelocityID][Fuselage.V]>
-                <[string8][InputTrigger][FlapLeverReleaseSound.Output]>
-                <[string8][InputVolume][0.7]>
-                <[string8][InputPitch]  [1.2]>
-                <[string8][SoundFile][flaps.wav]>
-                <[bool][External][false]>
-            >
-
-            <[soundinput][GearSoundUp][]
-                <[uint32][InputID][GearSoundUp.Output]>
-            >
-            <[sound_multi][SoundGearUp][]
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][VelocityID][Fuselage.V]>
-                <[string8][InputTrigger][GearSoundUp.Output]>
-                <[string8][InputVolume][1.0]>
-                <[string8][InputPitch][1.0]>
-                <[string8][SoundFile][gear.wav]>
-                <[bool][External][false]>
-            >
-            <[soundinput][GearSoundDown][]
-                <[uint32][InputID][GearSoundDown.Output]>
-            >
-            <[sound_multi][SoundGearDown][]
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][VelocityID][Fuselage.V]>
-                <[string8][InputTrigger][GearSoundDown.Output]>
-                <[string8][InputVolume][1.0]>
-                <[string8][InputPitch][1.0]>
-                <[string8][SoundFile][gear.wav]>
-                <[bool][External][false]>
-            >
-			
-            <[soundinput][SwitchSound][]
-                <[uint32][InputID][SwitchSound.Output]>
-            >
-            <[sound_multi][SoundSwitch][]
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][VelocityID][Fuselage.V]>
-                <[string8][InputTrigger][SwitchSound.Output]>
-                <[string8][InputVolume][0.6]>
-                <[string8][InputPitch][1.5]>
-                <[string8][SoundFile][click.wav]>
-                <[bool][External][false]>
             >			
         >
     >
