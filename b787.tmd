@@ -2162,16 +2162,38 @@
             >
 			
             <[soundinput][EnginePercentage][]
-                <[uint32][InputID][LeftEngineN1.Output]>
+                <[uint32][InputID][EngineRotation.Output]> //LeftEngineN1.Output]>
             >
-            <[soundmapping][EngineVolume0][]
+			
+            <[soundmapping][Engine1Volume0][]
                 <[string8][Input][EnginePercentage.Output]>
-                <[tmvector2d][Map][ (0.0 1.0) (0.5 0.6) (0.8 0.0) ]>
+                <[tmvector2d][Map][ (0.0 0.0) (0.18 0.5) (0.3 1.0) (0.7 1.0) (1.0 0.7) ]>
             >
-            <[soundmapping][EnginePitch0][]
+            <[soundmapping][Engine1Pitch0][]
                 <[string8][Input][EnginePercentage.Output]>
-                <[tmvector2d][Map][ (0.0 0.7) (1.0 1.0) ]>
+                <[tmvector2d][Map][ (0.0 0.30) (0.55 0.74) (1.0 0.93) ]>
             >
+            <[soundmultiply][Engine1Volume0Extern][]
+                <[uint32][Input0][Engine1Volume0.Output]>
+                <[uint32][Input1][120.0]>
+            >
+            <[soundloop][Engine1LoopExtern0][]
+                <[uint32][PositionID][Engine1Body.R]>
+                <[uint32][VelocityID][Engine1Body.V]>
+                <[string8][InputVolume][Engine1Volume0Extern.Output]>
+                <[string8][InputPitch][Engine1Pitch0.Output]>
+                <[string8][SoundFile][whine.wav]>
+                <[bool][Internal][false]>
+            >
+            <[soundloop][Engine1LoopIntern0][]
+                <[uint32][PositionID][Engine1Body.R]>
+                <[uint32][VelocityID][Engine1Body.V]>
+                <[string8][InputVolume][Engine1Volume0.Output]>
+                <[string8][InputPitch][Engine1Pitch0.Output]>
+                <[string8][SoundFile][whine.wav]>
+                <[bool][External][false]>
+            >			
+			
             <[soundmapping][EngineVolume1][]
                 <[string8][Input][EnginePercentage.Output]>
                 <[tmvector2d][Map][ (0.0 0.0) (0.4 0.0) (0.7 0.4) (1.0 1.0) ]>
@@ -2180,28 +2202,12 @@
                 <[string8][Input][EnginePercentage.Output]>
                 <[tmvector2d][Map][ (0.0 0.0) (1.0 1.0) ]>
             >
-
-            <[soundloop][EngineLoopExtern0][]
-                <[string8][InputVolume][EngineVolume0.Output]>
-                <[string8][InputPitch][EnginePitch0.Output]>
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][VelocityID][Fuselage.V]>
-                <[string8][SoundFile][whine.wav]>
-                <[bool][Internal][false]>
-            >
-            <[soundloop][EngineLoopIntern0][]
-                <[string8][InputVolume][EngineVolume0.Output]>
-                <[string8][InputPitch][EnginePitch0.Output]>
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][VelocityID][Fuselage.V]>
-                <[string8][SoundFile][whine.wav]>
-                <[bool][External][false]>
-            >
+		
             <[soundloop][EngineLoopExtern1][]
                 <[string8][InputVolume][EngineVolume1.Output]>
                 <[string8][InputPitch][EnginePitch1.Output]>
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][VelocityID][Fuselage.V]>
+                <[uint32][PositionID][LeftEngineBody.R]>
+                <[uint32][VelocityID][LeftEngineBody.V]>
                 <[string8][SoundFile][jet.wav]>
                 <[bool][Internal][false]>
             >
